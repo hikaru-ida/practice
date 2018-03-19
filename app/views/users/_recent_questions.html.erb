@@ -1,0 +1,14 @@
+<div class="recent-question-area col-sm-4">
+  <div class="recent-question-label">
+    <span>最近の質問</span>
+  </div>
+  <ol class="recent-question-items">
+    <% @recent_questions.each do |rct_question| %>
+      <%= link_to question_path(rct_question) do %>
+        <li class="recent-question-item">
+          <%= rct_question.content %>
+        </li>
+      <% end %>
+    <% end %>
+  </ol>
+</div>

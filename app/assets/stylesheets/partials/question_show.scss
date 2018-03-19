@@ -1,0 +1,120 @@
+$button_color: #6B6E71;
+$border_color: #EFEFEF;
+
+// question show and chart
+div.question-main {
+  margin: 0 auto;
+  max-width: $g_width_base;
+  background-color: #ffffff;
+  padding: 10px;
+  margin-left: 10px;
+
+  .question-title {
+    word-wrap: break-word;
+    font-size: 20px;
+  }
+
+  .question-description {
+    word-wrap: break-word;
+    font-size: 16px;
+    margin-top: 20px;
+    color: $g_color_font_gray;
+  }
+  .question-answers li {
+    list-style: none;
+    display: inline-block;
+  }
+
+  form {
+    display: inline-block;
+  }
+  div.vote-button {
+    margin-top: 10px;
+    color: #ffffff;
+    .btn {
+      margin-right: 20px;
+      background-color: $button_color;
+      min-width: 80px;
+      font-weight: 700;
+    }
+    .btn:hover {
+      background-color: darken($button_color, 8%);
+      color: #ffffff;
+    }
+  }
+
+  .comment-field {
+    margin: 100px auto;
+  }
+
+  div.chart {
+    div.user-answered {
+      color: gray;
+      font-weight: 600;
+      span {
+        padding: 3px;
+        border: solid 2px;
+      }
+    }
+  }
+
+  div.share-button {
+    a.btn-social.btn-twitter {
+      border: none;
+      i {
+        border: none;
+      }
+    }
+  }
+  div.show-comment-link {
+    margin-top: 10px;
+    margin-right: 5px;
+      text-align: right;
+    a {
+      color: black;
+      text-decoration: none;
+      font-size: 16px;
+    }
+  }
+
+}
+.question-main div.comment-field-bottom {
+    width: 100%;
+    //background-color: #EEEEEF;
+    padding: 20px;
+    margin-top: 20px;
+    border-top: $border_color solid 1px;
+    form.new_comment {
+      width: 100%;
+      textarea {
+        background-color: #F5F5F5;
+      }
+    }
+    div.btn-left {
+      float: left;
+      text-align: left;
+    }
+    div.btn-right {
+      text-align: right;
+    }
+    button.button {
+      color: #ffffff;
+      margin-top: 10px;
+      &.btn-post {
+        background-color: $g_color_base;
+        &:hover {
+          background-color: darken($g_color_base, 8%);
+        }
+      }
+      &.btn-twitter {
+        border: none;
+        background-color: $g_color_twitter;
+        &:hover {
+          background-color: darken($g_color_twitter, 8%);
+        }
+        i {
+          border: none;
+        }
+      }
+    }
+}

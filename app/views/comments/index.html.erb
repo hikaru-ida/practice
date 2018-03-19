@@ -1,0 +1,70 @@
+<div class="comments-wrapper">
+  <div class="question">
+    <div class="question-title">
+      <%= link_to @question.content, @question %>
+    </div>
+    <div class="question-description">
+      <%= simple_format(render_with_hashtags(@question.description)) %>
+    </div>
+  </div>
+  <div class="comment-field">
+  <%= form_for(@comment, url: comments_path(@question.id)) do |f| %>
+    <%= render 'shared/comment_error_messages'%>
+    <%= f.hidden_field :question_id, value: @question.id %>
+    <%= f.text_area :content, class: "form-control", placeholder:"コメント入力" %>
+    <div class="btn-left">
+      <button class="btn button btn-social btn-twitter" name="tweet_button" value="tweet" type="submit">
+        <i class="fa fa-twitter"></i>投稿する
+      </button>
+    <!-- .btn-left --></div>
+    <div class="btn-right">
+      <button class="btn button btn-post">
+        投稿する
+      </button>
+    </div>
+  <% end %>
+  </div>
+  <div>
+    <h4>コメント</h4>
+  </div>
+  <div class="comment-items">
+  <% if @comments.length != 0 %>
+    <% @comments.each do |comment| %>
+      <div class="comment-item">
+        <div class="profile-img">
+          <% if comment.user.image_url.nil? %>
+            <%= image_tag('/images/gray.png', size: "100x100") %>
+          <% else %>
+            <%= link_to image_tag(comment.user.image_url), user_path(comment.user) %>
+          <% end %>
+        </div>
+        <div class="user-info">
+          <%= link_to comment.user.username, user_path(comment.user) %>がコメント
+        </div>
+        <div class="comment-info">
+          <%= comment.answer.content%>と回答
+        </div>
+        <div class="comment-content">
+        <%= simple_format(h(comment.content)) %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div>
+      <span>コメントはまだありません</span>
+    </div>
+  <% end %>
+  <!-- .comment-items --></div>
+</div>
+    <div class="pagination">
+      <%= paginate @comments%>
+    </div>
+
+<script>
+  var infScroll = new InfiniteScroll('.comment-items', {
+    path: '.next a',
+    append: '.comment-item',
+    history: false,
+    hideNav: '.pagination'
+  })
+</script>

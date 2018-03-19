@@ -1,0 +1,54 @@
+<div class="DashboardProfileCard">
+  <% if current_user.image_url %>
+    <%= link_to image_tag(current_user.image_url, size: "80x80"), user_path(current_user), class: "DashboardProfileCard-avatarLink" %>
+  <% else %>
+    <%= link_to image_tag('/images/gray.png', size: "80x80"), user_path(current_user), class: "DashboardProfileCard-avatarLink" %>
+  <% end %>
+  <div class="DashboardProfileCard-name">
+    <span><%= current_user.username %></span>
+  </div>
+
+  <div class="ProfileCardStats">
+    <ul class="ProfileCardStats-statList">
+      <li class="ProfileCardStats-stat">
+        <%= link_to user_comments_path(current_user), class: "ProfileCardStats-statLink" do %>
+          <span class="ProfileCardStats-statLabel">
+            コメント
+          </span>
+          <span class="ProfileCardStats-statValue">
+            <%= current_user.comments.count %>
+          </span>
+        <!-- .ProfileCardStats-statLink --><% end %>
+      <!-- .ProfileCardStats-stat --></li>
+      <li class="ProfileCardStats-stat">
+        <%= link_to user_votes_path(current_user), class: "ProfileCardStats-statLink" do %>
+          <span class="ProfileCardStats-statLabel">
+            投票
+          </span>
+          <span class="ProfileCardStats-statValue">
+            <%= current_user.votes.count %>
+          </span>
+        <!-- .ProfileCardStats-statLink --><% end %>
+      <!-- .ProfileCardStats-stat --></li>
+      <li class="ProfileCardStats-stat">
+        <%= link_to user_questions_path(current_user), class: "ProfileCardStats-statLink" do %>
+          <span class="ProfileCardStats-statLabel">
+            質問
+          </span>
+          <span class="ProfileCardStats-statValue">
+            <%= current_user.questions.count %>
+          </span>
+        <!-- .ProfileCardStats-statLink --><% end %>
+      <!-- .ProfileCardStats-stat --></li>
+    <!-- .ProfileCardStats-statList --></ul>
+  <!-- .ProfileCardStats --></div>
+<!-- .DashboardProfileCard --></div>
+<div>
+<% if current_user.provider.nil? %>
+ <%= link_to omniauth_authorize_path(:user, 'twitter'), class: "btn btn-block btn-social btn-twitter center", method: 'get' do %>
+  twitterと連携する
+ <%end %>
+<% end %>
+</div>
+
+

@@ -1,0 +1,48 @@
+<div class="form-horizontal">
+  <fieldset>
+    <%= render 'shared/question_error_messages'%>
+    <div class="question-forms">
+      <div class="question-forms-title">
+        <h3>質問する</h3>
+      <!-- .question-forms-title --></div>
+      <div class="question-forms-content">
+        <%= form_for(@question, url: questions_path, method: :post) do |f| %>
+          <div class="form-group question-title">
+            <div class="col-lg-10">
+              <%= f.text_field :content, class: "form-control", placeholder:"質問文" %>
+            </div>
+          <!-- .form-group --></div>
+
+          <div class="form-group question-description">
+            <div class="col-lg-10">
+              <%= f.text_area :description, class: "form-control", placeholder:"本文（任意）" %>
+            </div>
+          <!-- .form-group --></div>
+
+          <hr>
+          <div class="form-group", id="answer-association-insertion-point">
+            <%= f.fields_for :answers do |answer| %>
+            <div class="col-xs-8">
+              <%= answer.text_field :content,class: "form-control", id: "answer-field" %>
+            <!-- .col-xs-8 --></div>
+            <br><br>
+            <% end %>
+          <!-- .form-group#answer-association-insertion-point --></div>
+
+
+          <%= link_to_add_association "+ 回答を追加する", f, :answers, id:"add-answer",
+              data: {
+                association_insertion_node: '#answer-association-insertion-point',
+                association_insertion_method: 'append'
+              } %>
+
+          <br><br>
+          <div class="submit-btn">
+            <%= f.submit "質問作成", id: "submit", class: 'btn button' %>
+          </div>
+          <br>
+        <% end %>
+      <!-- .question-form-content --></div>
+    <!-- .question-forms --></div>
+  </fieldset>
+</div>

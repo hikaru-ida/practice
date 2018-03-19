@@ -1,0 +1,45 @@
+<div class="user-page">
+  <%= render 'users/user_page_header'%>
+
+  <div class="contents">
+    <div class="votes-area col-sm-7">
+      <% @votes.each do |vote| %>
+        <div class="vote-item">
+          <div class="profile-img">
+            <% if @user.image_url.nil? %>
+              <%= image_tag('/images/gray.png', size: "100x100") %>
+            <% else %>
+              <%= link_to image_tag(@user.image_url), user_path(current_user) %>
+            <% end %>
+          </div>
+          <div class="vote-info">
+            <div class="voted-question">
+              <%= link_to vote.question.content, vote.question %>
+            </div>
+            <div class="question-answers">
+              <% vote.question.answers.each do |answer| %>
+                <% if answer == vote.answer %>
+                  <span class="voted-answer"><%= answer.content %></span>
+                <% else %>
+                  <span class="other-answers"><%= answer.content%></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= render 'users/recent_questions'%>
+  <div class="pagination">
+    <%= paginate @votes %>
+  </div>
+  <!-- .contents --></div>
+<!-- .user-page --></div>
+<script>
+  var infScroll = new InfiniteScroll('.votes-area', {
+    path: '.next a',
+    append: '.vote-item',
+    history: false,
+    hideNav: '.pagination'
+  })
+</script>

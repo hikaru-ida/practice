@@ -1,0 +1,40 @@
+body {
+  background-color: $g_color_bg;
+}
+.hashtag-content {
+  padding-top: 70px;
+}
+
+div.page-content {
+  //width: 100%;
+  margin-top: 0;
+  padding-top: 56px; //固定navigation用
+}
+
+.chart {
+  max-width: 600px;
+  background-color: #ffffff;
+}
+
+
+ol {
+  list-style:none;
+}
+// pagination
+div.pagination {
+  max-width: 600px;
+  margin: auto;
+  display:block;
+}
+
+
+
+div.contents {
+  max-width: 1000px;
+  margin: auto;
+}
+div.alert.top-alert {
+  z-index: 9999999;
+  width: 100%;
+  position: absolute;
+}

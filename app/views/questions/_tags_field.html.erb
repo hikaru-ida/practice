@@ -1,0 +1,20 @@
+<div class="sidebar-tags">
+  <div class="sidebar-tags-header">
+    <span>タグ</span>
+  <!-- .sidebar-tags-header --></div>
+
+  <div class="sidebar-tags-content">
+    <ul class="tag-items">
+      <% @tags.each do |tag| %>
+        <li class="tag-item">
+          <%= link_to questions_hashtags_path(tag.name), class: "tag-item-link" do %>
+            <span class="tag-item-text">
+              #<%= tag.name %>
+            </span>
+          <!-- .tag-item-link --><% end %>
+        <!-- .tag-item --></li>
+      <% end %>
+    <!-- .tag-items --></ul>
+  <!-- .sidebar-tags-content --></div>
+<!-- .sidebar-tags --></div>
+

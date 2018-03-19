@@ -1,0 +1,38 @@
+<div class="user-page-header">
+  <div class="profile-box">
+    <% if @user.image_url.nil? %>
+      <%= image_tag('/images/gray.png', size: "100x100") %>
+    <% else %>
+      <%= image_tag(@user.image_url, size: "100x100") %>
+    <% end %>
+    <span>
+      <%= @user.username%>
+    </span>
+  <!-- .profile-box --></div>
+
+  <div class="user-stats">
+    <ul class="user-stats-items">
+      <li class="user-stats-item <%= 'is-active' if controller_action?('users','user_comments') %>">
+        <%= link_to user_path(@user)  do %>
+          <span><%= 'コメント' + " (#{@user.comments.count})" %></span>
+        <% end %>
+      <!-- .user-stats-item.is-active --></li>
+
+      <% if current_user?(@user) %>
+        <li class="user-stats-item <%= 'is-active'if controller_action?('users','user_votes') %>">
+          <%= link_to user_votes_path(@user) do %>
+            <span><%= '投票' + " (#{@user.votes.count})" %></span>
+          <% end %>
+        <!-- .user-stats-item --></li>
+      <% end %>
+
+      <% if current_user?(@user) %>
+        <li class="user-stats-item <%='is-active' if controller_action?('users','user_questions') %>">
+          <%= link_to user_questions_path(@user) do %>
+            <span><%= '質問' + "(#{@user.questions.count})" %></span>
+          <% end %>
+        <!-- .user-stats-item --></li>
+      <% end %>
+    <!-- user-stats-items --></ul>
+  <!-- user-stats --></div>
+<!-- .user-page-header --></div>

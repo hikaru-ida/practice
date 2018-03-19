@@ -1,0 +1,54 @@
+div.DashboardProfileCard {
+  background-color: white;
+  padding: 10px;
+
+  margin-bottom: 20px;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+
+  min-width: 150px;
+  min-height: 100px;
+
+  a.DashboardProfileCard-avatarLink img {
+    border-radius: 1000px;
+    margin-left: 10px;
+  }
+  div.DashboardProfileCard-name {
+    display: inline-block;
+    position: absolute;
+    padding-top: 40px;
+    padding-left: 10px;
+    span {
+      @include font-design(16px,black,700);
+    }
+  }
+
+  div.ProfileCardStats {
+    ul.ProfileCardStats-statList {
+      list-style: none;
+      padding-left: 10px;
+      margin-top: 10px;
+      margin-left: 0px;
+
+      li.ProfileCardStats-stat {
+        display: inline-block;
+        margin-right: 30px;
+
+        a.ProfileCardStats-statLink {
+          text-decoration: none;
+
+          span.ProfileCardStats-statLabel {
+            @include font-design(14px, $g_color_font_gray, 400);
+
+          }
+          span.ProfileCardStats-statValue {
+            display: block;
+            @include font-design(20px, $g_color_base, 900);
+          }
+        }
+
+      }
+    }
+  }
+
+}

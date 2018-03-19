@@ -1,0 +1,43 @@
+<div class="questions-main col-sm-7 col-xs-12">
+  <div class = "sort-method">
+    <% if @tag %>
+      <span><%= link_to '人気', questions_hashtags_popular_path(@tag.name), class: "#{'active' if controller_action?('questions', 'hashtags_order_of_popularity')}" %></span>
+      <span><%= link_to '新着', questions_hashtags_path(@tag.name), class: "#{'active' if controller_action?('questions','hashtags')}" %></span>
+    <% else %>
+      <span><%= link_to '人気', questions_popular_path, class: "#{'active' if controller_action?('questions', 'order_of_popularity')}" %></span>
+      <span><%= link_to '新着', questions_path, class: "#{'active' if controller_action?('questions','index')}" %></span>
+    <% end %>
+  <!-- .sort-method --></div>
+  <ol class="question-items">
+  <% @questions.each do |question| %>
+    <li class="question-item">
+      <%= link_to question_path(question.id), class:"question-link" do %>
+        <div id="question-<%= question.id %>" class="content">
+          <div class="question-tag-images">
+            <% question.tags.each do |tag| %>
+              <% if tag.name == "テクノロジー" || tag.name == "恋愛" || tag.name == "政治" || tag.name == "エンタメ" %>
+                <span class="question-item-tags-element" id="tag-element-<%= tag.name %>">
+                  <%= tag.name%>
+                </span>
+              <% end %>
+            <% end %>
+          <!-- .question-tag-images --></div>
+
+          <div class="question-item-title">
+            <h4><%= question.content %></h4>
+          <!-- .question-title --></div>
+          <div class="question-item-description">
+            <%= truncate(question.description, length: 60) %>
+          <!-- .question-description --></div>
+          <div class="check-mark">
+          <% if user_signed_in? && @votes.include?(question.id) %>
+            <%= image_tag('/images/check.png', size:"15x15")%>
+          <% end %>
+          </div>
+
+        <!-- .content --></div>
+      <!-- .question-link --><% end %>
+    <!-- .question-item --></li>
+  <% end %>
+  <!-- .questionsitems --></ol>
+<!-- questions-main --></div>

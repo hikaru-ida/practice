@@ -1,0 +1,71 @@
+div.sidebar {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+@mixin font-design($size: 16px,$color:black,$weight: 400) {
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+}
+div.sidebar-tags {
+  background-color: white;
+  padding: 10px 0px;
+
+  margin-bottom: 20px;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+
+  min-width: 150px;
+  min-height: 100px;
+
+  div.sidebar-tags-header {
+    padding-left: 20px;
+    span {
+      @include font-design(18px,black,700);
+    }
+  }
+
+  div.sidebar-tags-content {
+    ul.tag-items {
+      list-style: none;
+      padding-left: 0px;
+      margin-top: 20px;
+
+      li.tag-item {
+        margin-bottom: 4px;
+
+        a.tag-item-link {
+          text-decoration: none;
+          display: block;
+          padding-left: 20px;
+
+          &:hover {
+            background-color: darken(#ffffff, 10%);
+          }
+          span.tag-item-text {
+            @include font-design(16px, black, 600);
+
+          }
+        }
+
+      }
+    }
+  }
+
+}
+
+div.navbar-tag-name {
+  z-index: 1; //これがないとdropdown-menuが後ろに隠れる
+  margin-top: 45px;
+  background-color: $g_color_base;
+  color: white;
+
+  div.container-fluid {
+      max-width: 1000px;
+    h3 {
+      margin-left: 10px;
+    }
+  }
+
+}

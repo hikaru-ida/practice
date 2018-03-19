@@ -1,0 +1,93 @@
+$questions_width: 750px;
+$question_bg_color: #ffffff;
+
+@mixin bg_link_color($color) {
+  background-color: $color;
+  &:hover {
+    background-color: darken($color, 6%);
+  }
+}
+
+@mixin tag_bg_color($color, $name) {
+  span#tag-element-#{$name} {
+    background-color: $color;
+    padding: 3px;
+    border-radius: 4px;
+    color: white;
+    margin-right: 10px;
+  }
+}
+
+div.questions-main {
+  padding: 0 !important;
+  margin-right: 10px !important;
+  max-width: $questions_width;
+
+
+  ol.question-items {
+    padding: 0;
+
+    li.question-item {
+      position: relative;
+      @include bg_link_color($question_bg_color);
+      max-width: $questions_width;
+
+      margin-top: 8px;
+
+      border-radius: 2px;
+
+      .question-link {
+        display: block;
+        text-decoration: none;
+        word-wrap: break-word;
+        padding: 10px;
+
+        div.content {
+
+          div.question-tag-images {
+            @include tag_bg_color(#3993F2, "テクノロジー");
+            @include tag_bg_color(#FDBEC9, "恋愛");
+            @include tag_bg_color(#A0805D, "政治");
+            @include tag_bg_color(#71E2D5, "エンタメ");
+          }
+          .question-item-title {
+            color: black;
+            margin-left: 5px;
+          }
+          .question-item-description {
+            color: $g_color_font_gray;
+            margin-left: 5px;
+          }
+
+          .check-mark {
+            text-align: right;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+          }
+        }
+      }
+    }
+  }
+  div.sort-method {
+    padding: 5px;
+    max-width: $questions_width;
+    background-color: $question_bg_color;
+    text-align: center;
+
+    span {
+      margin-right: 50px;
+      a {
+        color: black;
+        text-decoration: none;
+        &.active {
+          font-weight: 700;
+          border-bottom: solid 2px;
+        }
+        &:hover {
+          border-bottom: solid 2px;
+        }
+      }
+    }
+  }
+}

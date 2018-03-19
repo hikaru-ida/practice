@@ -1,0 +1,84 @@
+// comment
+div.comments-wrapper {
+  max-width: $g_width_base;
+  margin: 0 auto;
+  margin-bottom: 10px;
+
+  div.question {
+
+    padding: 10px;
+    background-color: #ffffff;
+    word-wrap: break-word;
+    border-top: $g_color_base solid 2px;
+
+    div.question-title a {
+      color: black;
+      font-size: 20px;
+      text-decoration: none;
+    }
+  }
+
+  div.comment-field {
+    background-color: #EEEEEF;
+    padding: 20px;
+    margin-bottom: 10%;
+    .form-control {
+      margin: 0 auto;
+      margin-bottom: 5px;
+    }
+    div.btn-left {
+      float: left;
+      button.btn-social {
+        border: none;
+        i {
+          border: none;
+        }
+      }
+    }
+    div.btn-right {
+      text-align: right;
+      button.btn-post {
+        background-color: $g_color_base;
+        color: white;
+      }
+    }
+  }
+
+  div.comment-item {
+    background-color: #ffffff;
+    padding: 10px 10px 1px;
+    word-wrap: break-word;
+    max-width: $g_width_base;
+    border-bottom: #DCDCDC solid 1px;
+    min-height: 50px;
+    overflow: hidden;
+
+    div.profile-img img {
+      width: 50px;
+      height: 50px;
+      float: left;
+      margin-right: 10px;
+      border-radius: 100px;
+    }
+    div.comment-info {
+      overflow: hidden;
+    }
+    div.comment-content {
+      overflow: hidden;
+    }
+    div.user-info {
+      font-size: 12px;
+    }
+
+
+    .comment-info {
+      .voted-question {
+        color: black;
+      }
+      color: #938E7F;
+    }
+    .comment-content {
+      color: black;
+    }
+  }
+}

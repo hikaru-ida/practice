@@ -1,0 +1,37 @@
+div.invitation {
+  margin-top: -10px;
+  margin-bottom: 30px;
+  background-color: lighten($g_color_base, 13%);
+  padding: 50px;
+  width: 100%;
+  div.invitation-contents {
+    max-width: 1000px;
+    margin: auto;
+    div.invitation-description {
+      margin-top: 10px;
+      max-width: 500px;
+      word-wrap: break;
+      color: white;
+    }
+    div.invitation-title {
+      color: white;
+    }
+
+    div.invitation-links {
+      margin-top: 5px;
+      a {
+        max-width: 300px;
+        min-width: 100px;
+        margin-top: 10px;
+        display: block;
+        &.login-link {
+          color: white;
+          font-size: 12px;
+        }
+        i {
+          border: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="invitation">
+  <div class="invitation-contents">
+    <div class="invitation-title">
+      <h3>このサイトについて</h3>
+    </div>
+    <div class="invitation-description">
+      <span>Goiken（ゴイケン）は、他の人の意見を知るためのサイトです
+      質問を作成して、選択肢の中から回答を選んで投票してもらいます。
+      自分がどれに投票したのか、誰が質問を作成したのかは他の人からはわからないようになっています。
+      </span>
+    <!-- .invitation-description --></div>
+    <div class="invitation-links">
+      <%= link_to omniauth_authorize_path(:user, 'twitter'), class: "btn btn-block btn-social btn-twitter center" do %>
+        <i class="fa fa-twitter"></i> Twitterで登録/ログイン
+      <% end %>
+      <%= link_to "メールアドレスで登録", new_registration_path(:user), class: "btn btn-primary" %>
+      <%= link_to "すでに登録済みの方はこちら", new_session_path(:user), class: "login-link"  %>
+    <!-- .invitation-links --></div>
+  <!-- .invitation-contents --></div>
+<!-- .invitation --></div>

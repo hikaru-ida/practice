@@ -1,0 +1,63 @@
+<form class="form-horizontal">
+  <fieldset>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="profile-area">
+    <div class="profile-title">
+      <br>
+      <h3>プロフィール</h3>
+    </div>
+    <div class="profile-form">
+      <div class="form-group">
+        <div class="col-lg-10">
+          <label class="control-label" for="">メールアドレス</label>
+          <% if current_user.provider == "twitter"%>
+            <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "off", value: "" %>
+          <% else %>
+            <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
+          <% end %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-lg-10">
+          <label class="control-label" for="">パスワード</label>
+          <% if @minimum_password_length %>
+            <em> (<%= @minimum_password_length %>文字以上) </em>
+          <% end %>
+          <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10">
+          <label class="control-label" for="">パスワードの確認</label>
+          <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10">
+          <label class="control-label" for="">現在のパスワード</label>
+          <%= f.password_field :current_password, class: "form-control", autocomplete: "off" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10">
+          <%= f.submit "編集", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+      <div class="delete-user">
+        <%= link_to '退会する', registration_path(resource_name), data: {confirm: "退会しますか?"}, method: :delete, id: "delete-user" %>
+      </div>
+      <br>
+    </div>
+  <% end %>
+
+  </fieldset>
+</form>
+

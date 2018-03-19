@@ -1,0 +1,8 @@
+<div class="question-item">
+<%= link_to question_path(question.id) do %>
+  <li id="question=<%= question.id %>" >
+    <%= question.content %>
+    <%= render_with_hashtags(question.description) %>
+  </li>
+<% end %>
+</div>

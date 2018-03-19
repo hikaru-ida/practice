@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Goiken</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width" >
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js"></script>
+    <script type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" integrity="sha256-N4u5BjTLNwmGul6RgLoESPNqDFVUibVuOYhP4gJgrew=" crossorigin="anonymous"></script>
+    <%= favicon_link_tag %>
+  </head>
+
+  <body>
+    <% flash.each do |type, message| %>
+    <div class="alert top-alert <%= flash_class_for(type) %>" role="alert">
+      <%= message %>
+    </div>
+    <% end %>
+    <%= render 'navigation/navigation'%>
+    <div class="page-content">
+
+
+
+      <%= yield %>
+        <%= debug(params) if Rails.env.development? %>
+    <!-- .page-content --></div>
+
+  </body>
+</html>

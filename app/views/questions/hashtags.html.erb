@@ -1,0 +1,10 @@
+<%= render 'navigation/tag_name'%>
+<div class="contents">
+<div class = "hashtag-content">
+<%= render 'sidebar'%>
+<%= render 'questions_list'%>
+  <!-- hashtag-content --></div>
+<div class="pagination">
+  <%= paginate @questions %>
+</div>
+<!-- .contents --></div>

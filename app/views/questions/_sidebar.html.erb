@@ -1,0 +1,6 @@
+<div class="sidebar col-sm-4 ">
+<% if user_signed_in? %>
+  <%= render 'questions/user_dashboard'%>
+<% end %>
+<%= render 'questions/tags_field'%>
+<!-- .sidebar --></div>

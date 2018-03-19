@@ -1,0 +1,43 @@
+<div class="user-page">
+  <%= render 'users/user_page_header'%>
+
+  <div class="contents">
+    <div class="comments-wrapper col-sm-7">
+      <% @comments.each do |comment| %>
+        <div class="comment-item">
+          <div class="profile-img">
+            <% if current_user.image_url.nil? %>
+              <%= image_tag('/images/gray.png', size: "100x100") %>
+            <% else %>
+              <%= link_to image_tag(comment.user.image_url), user_path(comment.user) %>
+            <% end %>
+          <!-- .profile-img --></div>
+          <div class="comment-info">
+            <div class="voted-question">
+              <%= link_to truncate(comment.question.content,length:20), comment.question %>へのコメント
+            <!-- .voted-question --></div>
+            <div class="voted-answer">
+              <%= comment.answer.content%>に投票
+            <!-- .voted-answer --></div>
+          <!-- .comment-info --></div>
+          <div class="comment-content">
+            <%= simple_format(h(comment.content)) %>
+          <!-- .comment-content --></div>
+        <!-- .comment-item --></div>
+      <% end %>
+    <!-- .comments-wrapper.col-sm-7 --></div>
+    <%= render 'users/recent_questions' %>
+    <div class="pagination">
+      <%= paginate @comments%>
+    </div>
+  <!-- .contents --></div>
+<!-- .user-page --></div>
+
+<script>
+  var infScroll = new InfiniteScroll('.comments-wrapper', {
+    path: '.next a',
+    append: '.comment-item',
+    history: false,
+    hideNav: '.pagination'
+  })
+</script>

@@ -1,0 +1,20 @@
+<% if !user_signed_in? %>
+  <%= render 'shared/lead_to_login'%>
+<% end %>
+<div class="contents">
+<%= render 'questions/sidebar'%>
+<%= render 'questions/questions_list'%>
+
+<div class="pagination">
+  <%= paginate @questions %>
+<!-- .pagination --></div>
+<!-- .contents --></div>
+
+<script>
+  var infScroll = new InfiniteScroll('.question-items', {
+    path: '.next a',
+    append: '.question-item',
+    history: false,
+    hideNav: '.pagination'
+  })
+</script>

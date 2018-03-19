@@ -1,0 +1,49 @@
+<div class="user-page container-fluid">
+<div class="user-page-header container-fluid">
+  <div class="profile-box ">
+  <% if current_user.image_url.nil? %>
+    <%= link_to image_tag('/images/gray.png', size: "100x100"), current_user.image_url %>
+  <% else %>
+    <%= link_to image_tag(@user.image_url, size: "100x100"), current_user.image_url %>
+  <% end %>
+  </div>
+
+  <div class="profile-menus">
+    <ul>
+      <%= link_to user_path(@user)  do %>
+      <li>
+        <%= 'コメント' + " (#{@user.comments.count})" %>
+      </li>
+      <% end %>
+      <% if current_user?(@user) %>
+        <li>
+          <%= link_to 'vote' + " (#{@user.votes.count})", user_votes_path %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<!-- .user-page-header --></div>
+
+  <div class="user-page-content">
+    <div class="comments-area">
+      <% @comments.each do |comment| %>
+        <div class="comment-item">
+          <div class="user-info">
+            <%= link_to image_tag(current_user.image_url), user_path(current_user) %>
+          </div>
+          <div class="comment-info">
+            <span class="voted-question">
+              <%= link_to truncate(comment.question.content,length:20), comment.question %>へのコメント
+            </span>
+            <span class="voted-answer">
+              (<%= comment.answer.content%>に投票)
+            </span>
+          </div>
+          <div class="comment-content">
+            <%= simple_format(h(comment.content)) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <!-- .user-page-content --></div>
+<!-- .user-page--></div>

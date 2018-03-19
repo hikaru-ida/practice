@@ -1,0 +1,43 @@
+<header>
+  <nav class="global-nav navbar-fixed-top">
+    <div class="container-fluid">
+
+        <div id="app-logo"><%= link_to('Goiken', questions_path) %></div>
+        <div class="global-nav-items">
+          <% if user_signed_in? %>
+          <div class="nav-item new-question">
+            <%= link_to '質問作成', new_question_path %>
+          </div>
+          <div class="nav-item dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.image_url %>
+                <%= image_tag(current_user.image_url, size: "35x35") %>
+                <span class="caret"></span>
+              <% else %>
+                <%= image_tag('/images/gray.png', size: "35x35") %>
+                <span class="caret"></span>
+              <% end %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><%= link_to 'マイページ', user_path(current_user), class:"dropdown-item" %></li>
+              <li><%= link_to 'プロフィール変更', edit_user_registration_path, class:"dropdown-item" %></li>
+              <li class="divider"></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
+            <!-- .dropdown-menu .dropdown-menu-right --></ul>
+          <!-- .nav-item .dropdown --></div>
+          <% else %>
+          <div class="nav-item dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="resister"> ユーザー登録</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><%= link_to '登録', new_user_registration_path %></li>
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <!-- .dropdown-menu --></ul>
+          <!-- .nav-item.dropdown --></div>
+          <% end %>
+        <!-- .global-nav-items --></div>
+
+    <!-- .container-fluid --></div>
+  <!-- .global-nav .navbar-fixed-top ---></nav>
+</header>

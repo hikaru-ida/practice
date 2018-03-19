@@ -1,0 +1,21 @@
+<div class="user-page">
+  <%= render 'users/user_page_header'%>
+
+  <div class="contents">
+    <div class="user-questions-area col-sm-7">
+      <ul class="user-question-items">
+        <% @questions.each do |question| %>
+          <li class="user-question-item">
+            <div class="question-title">
+              <%= link_to question.content, question_path(question) %>
+            <!-- .question-title --></div>
+            <div class="question-description">
+              <%= truncate(question.description, length: 30) %>
+            <!-- .question.description --></div>
+          <!-- .user-question-item --></li>
+        <% end %>
+      <!-- .user-questions-items --></ul>
+    <!-- .user-questions-area --></div>
+    <%= render 'users/recent_questions'%>
+  <!-- .contents --></div>
+<!-- .user-page --></div>

@@ -1,0 +1,15 @@
+<div class="contents">
+  <%= render 'sidebar'%>
+  <%= render 'questions_list'%>
+  <div class="pagination">
+    <%= paginate @questions %>
+  </div>
+<!-- .contents --></div>
+<script>
+  var infScroll = new InfiniteScroll('.question-items', {
+    path: '.next a',
+    append: '.question-item',
+    history: false,
+    hideNav: '.pagination'
+  })
+</script>

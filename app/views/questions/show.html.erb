@@ -1,0 +1,129 @@
+<div class="contents">
+  <%= render 'sidebar'%>
+  <div class="question-main col-sm-7">
+    <div class="question-title">
+      <%= @question.content %>
+    <!-- .question-title --></div>
+    <div class="question-description">
+      <%= simple_format(render_with_hashtags_and_uri(@question.description)).html_safe %>
+    <!-- .question-description --></div>
+    <div class="share-button">
+      <%= link_to @tweet_url, target: "_blank", class: "btn button btn-social btn-twitter"  do %>
+        <i class="fa fa-twitter"></i>
+        質問を共有する
+      <% end %>
+    <!--. share-button --></div>
+    <hr>
+
+    <% if !answered?(@question) %>
+      <div>回答する</div>
+      <% @question.answers.order(:id).each do |answer| %>
+        <%= form_for(@vote) do |f| %>
+          <div class="vote-button">
+            <%= f.hidden_field :question_id, value: @question.id%>
+            <%= f.hidden_field :answer_id, value: answer.id%>
+            <%= f.submit answer.content, class: 'btn button' %>
+          <!-- .vote-button --></div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="chart">
+        <div class="user-answered">
+          <span>あなたの投票: <%= @answer %></span>
+        </div>
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <div class="show-comment-link">
+        <%= link_to comments_path(@question.id)  do %>
+          <%= image_tag('/images/comment_icon.png', size: "25x25") %>
+          コメント
+        <% end %>
+      <!-- .show-comment-link --></div>
+    <% end %>
+
+
+  <% if answered?(@question) %>
+      <div class="comment-field-bottom ">
+        <%= form_for(@comment, url: comments_path(@question.id)) do |f| %>
+          <%= render 'shared/comment_error_messages'%>
+          <%= f.hidden_field :question_id, value: @question.id %>
+          <%= f.text_area :content, class: "form-control", placeholder:"コメント入力" %>
+          <div class="btn-left">
+            <button class="btn button btn-social btn-twitter" name="tweet_button" value="tweet" type="submit">
+              <i class="fa fa-twitter"></i>投稿する
+            </button>
+          <!-- .btn-left --></div>
+          <div class="btn-right">
+            <button class="btn button btn-post">
+              投稿する
+            </button>
+          <!-- .btn-right --></div>
+        <% end %>
+      <!-- .comments-field --></div>
+  <% end %>
+  <!-- .question-main.col-sm-7 --></div>
+<!-- .contents --></div>
+
+<script>
+$(function() {
+
+  $(document).on('turbolinks:load', function() {
+    let q= <%= @question_j %>;
+    if( window.voteChart != null ) {
+      window.voteChart.destroy();
+    }
+    window.voteChart = createChart(q);
+  })
+  function createColorArray(length) {
+    let colors = ["#54ca76", "#f5c452", "#f2637f", "#9261f3","#31a4e6","55cbcb"];
+    if (length <= colors.length) {
+      return colors.slice(0, length);
+    }
+  }
+
+  function createChart(chart_params) {
+    return  new Chart(document.getElementById("myChart").getContext("2d"), {
+      type: 'horizontalBar',
+      data: {
+        labels: chart_params["labels"],
+        datasets: [{
+          data: chart_params["values"],
+          backgroundColor: createColorArray(chart_params["labels"].length)
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true,
+              userCallback: function(label, index, labels) {
+                if (Math.floor(label) == label) {
+                  return label;
+                }
+              }
+            }
+          }]
+        },
+        animation: false,
+        legend: { // todo: fix duplication ?
+          position: window.innerWidth < 600 ? "bottom" : "left",
+          display: false,
+          labels: {
+            fontSize: window.innerWidth < 600 ? 10 : 12,
+            padding: window.innerWidth < 600 ? 8 : 10,
+            boxWidth: window.innerWidth < 600 ? 10 : 12
+          }
+        },
+        onResize: function (instance) { // todo: fix duplication ?
+          instance.chart.options.legend.position = window.innerWidth < 600 ? "bottom" : "left";
+          instance.chart.options.legend.labels.fontSize = window.innerWidth < 600 ? 10 : 12;
+          instance.chart.options.legend.labels.padding = window.innerWidth < 600 ? 8 : 10;
+          instance.chart.options.legend.labels.boxWidth = window.innerWidth < 600 ? 10 : 12;
+        }
+      }
+    });
+  }
+
+})
+</script>

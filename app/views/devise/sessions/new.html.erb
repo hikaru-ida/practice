@@ -1,0 +1,44 @@
+<div class="form-horizontal">
+  <div class="col-sm-4 col-sm-offset-1">
+  <fieldset>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <div class="col-lg-10">
+            <%= f.email_field :email,id: "inputEmail", class: "form-control", autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-10">
+            <%= f.password_field :password,id: "inputPassword", class: "form-control", autocomplete: "off", placeholder: "パスワード" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <% if devise_mapping.rememberable? -%>
+            <div class="col-lg-10">
+              <%= f.check_box :remember_me, class:"form-check-input" %>
+              記憶する
+            </div>
+          <% end -%>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-10">
+            <%= f.submit "メールアドレスでログイン", class: "btn btn-primary btn-block" %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <div class="col-lg-10">
+          アカウントを持っていない方は
+          <%= link_to "新規登録", new_registration_path(resource_name) %>
+          から
+         </div>
+      </div>
+
+  </fieldset>
+  </div>
+  <%= render "devise/shared/links" %>
+</div>

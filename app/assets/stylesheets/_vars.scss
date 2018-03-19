@@ -1,0 +1,11 @@
+$g_color_base: #fd8f19;
+$g_color_font_gray: #758490;
+$g_color_twitter: #5BA9EB;
+$g_color_bg: #F5F5F5;
+$g_width_base: 600px;
+
+@mixin font-design($size: 16px,$color:black,$weight: 400) {
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+}
